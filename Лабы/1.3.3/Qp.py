@@ -52,7 +52,7 @@ avgy2=mean(y_2)
 sigma=(((avgy2 - avgy**2)/(avgx2-avgx**2)-0.0005708**2)/7)**0.5
 print(sigma/0.0005708)
 
-ax.text(50, 0.138, "f =", fontsize="large")
+ax.text(50, 0.138, "f =", fontsize="x-large")
 ax.text(60, 0.138, f)
 
 fig.savefig("QP1.png") #сохранение
