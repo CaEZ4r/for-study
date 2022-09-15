@@ -1,0 +1,48 @@
+void printWeekDay(DataTime a) {
+    if (a.tm_wday == 1) {
+        printf("monday\n");
+    }
+    else if (a.tm_wday == 2) {
+        printf("tuesday\n");
+    }
+    else if (a.tm_wday == 3) {
+        printf("wednesday\n");
+    }
+    else if (a.tm_wday == 4) {
+        printf("thursday\n");
+    }
+    else if (a.tm_wday == 5) {
+        printf("friday\n");
+    }
+    else if (a.tm_wday == 6) {
+        printf("saturday\n");
+    }
+    else if (a.tm_wday == 7) {
+        printf("sunday\n");
+    }
+}
+
+DataTime getTime(char* a){
+    int dig[7];
+    DataTime res;
+    char s[3] = "";
+    s[0] = a[0];
+    s[1] = a[1];
+    res.tm_year = atoi(s);
+    s[0] = a[3];
+    s[1] = a[4];
+    res.tm_mon = atoi(s);
+    s[0] = a[6];
+    s[1] = a[7];
+    res.tm_mday = atoi(s);
+    s[0] = a[9];
+    s[1] = a[10];
+    res.tm_hour = atoi(s);
+    s[0] = a[12];
+    s[1] = a[13];
+    res.tm_min = atoi(s);
+    s[0] = a[15];
+    s[1] = a[16];
+    res.tm_sec = atoi(s);
+    return res;
+}
