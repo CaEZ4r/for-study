@@ -171,3 +171,35 @@ DataTime plusTimer(DataTime a, const Timer* b) {
 void showTimer(const Timer* a) {
     printf("%0.2d %0.2d:%0.2d:%0.2d", a->dd, a->hh, a->min, a->sec);
 }
+
+Timer startTime(){
+    struct timespec mt1;
+    clock_gettime(CLOCK_REALTIME, &mt1);
+    time_t tt = mt1.tv_sec;
+    DataTime * a = localtime(&tt);
+    Timer b;
+    b.dd = a->tm_mday + 365 * a->tm_year;
+    b.hh = a->tm_hour;
+    b.min = a->tm_min;
+    b.sec = a->tm_sec;
+    b.nano = mt1.tv_nsec;
+    return b;
+}
+
+Timer* stopTime(Timer* b) {
+    struct timespec mt1;
+    clock_gettime(CLOCK_REALTIME, &mt1);
+    time_t tt = mt1.tv_sec;
+    DataTime * a = localtime(&tt);
+    b->dd = a->tm_mday + 365 * a->tm_year;
+    b->hh = a->tm_hour;
+    b->min = a->tm_min;
+    b->sec = a->tm_sec;
+    b->nano = mt1.tv_nsec;
+    return b;
+}
+
+Timer getTimer(long long dd, int hh, int min, int sec, int nano){
+    Timer a = {dd, hh, min, sec, nano};
+    return a;
+}
