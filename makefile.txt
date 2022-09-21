@@ -1,0 +1,11 @@
+all: test1
+
+test1: prim_test1.c primMin.o primPM.o
+
+	g++ prim_test.c primMin.o primPM.o -o test2
+
+primMin.o: primMin.c
+	g++ -c primMin.c
+
+primPM.o: primPM.c
+	g++ -c primPM.c
