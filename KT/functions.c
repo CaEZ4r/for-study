@@ -1,24 +1,34 @@
+#include "prim.h"
+
+DataTime setCurrentTime() {
+	long int a;
+	a = time(NULL);
+	DataTime * mtime;
+	mtime = localtime(&a);
+	return *mtime;
+}
+
 void printWeekDay(DataTime a) {
     if (a.tm_wday == 1) {
-        printf("monday\n");
+        printf("понедельник\n");
     }
     else if (a.tm_wday == 2) {
-        printf("tuesday\n");
+        printf("вторник\n");
     }
     else if (a.tm_wday == 3) {
-        printf("wednesday\n");
+        printf("среда\n");
     }
     else if (a.tm_wday == 4) {
-        printf("thursday\n");
+        printf("четверг\n");
     }
     else if (a.tm_wday == 5) {
-        printf("friday\n");
+        printf("пятница\n");
     }
     else if (a.tm_wday == 6) {
-        printf("saturday\n");
+        printf("суббота\n");
     }
     else if (a.tm_wday == 7) {
-        printf("sunday\n");
+        printf("воскресенье\n");
     }
 }
 
@@ -28,7 +38,8 @@ DataTime getTime(char* a){
     char s[3] = "";
     s[0] = a[0];
     s[1] = a[1];
-    res.tm_year = atoi(s);
+    time_t tt = atoi(s);
+    res.tm_year = tt;
     s[0] = a[3];
     s[1] = a[4];
     res.tm_mon = atoi(s);
@@ -169,7 +180,7 @@ DataTime plusTimer(DataTime a, const Timer* b) {
 }
 
 void showTimer(const Timer* a) {
-    printf("%0.2d %0.2d:%0.2d:%0.2d", a->dd, a->hh, a->min, a->sec);
+    printf("%0.2lld %0.2d:%0.2d:%0.2d", a->dd, a->hh, a->min, a->sec);
 }
 
 Timer startTime(){
@@ -203,3 +214,4 @@ Timer getTimer(long long dd, int hh, int min, int sec, int nano){
     Timer a = {dd, hh, min, sec, nano};
     return a;
 }
+
